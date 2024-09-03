@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="BugMauiShadowTouch.MainPage">
+    <ContentPage.Resources>
+        <Style TargetType="Border"
+               x:Key="MyBorderStyle">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray300}}" />
+            <Setter Property="WidthRequest"
+                    Value="100" />
+            <Setter Property="HeightRequest"
+                    Value="100" />
+            <Setter Property="Stroke"
+                    Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray900}}" />
+            <Setter Property="StrokeThickness"
+                    Value="1" />
+            <Setter Property="StrokeShape"
+                    Value="Ellipse" />
+            <Setter Property="Margin"
+                    Value="0,0,0,20" />
+        </Style>
+
+        <Style TargetType="Border"
+               x:Key="MyBorderStyleWithShadow">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray300}}" />
+            <Setter Property="WidthRequest"
+                    Value="100" />
+            <Setter Property="HeightRequest"
+                    Value="100" />
+            <Setter Property="Stroke"
+                    Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray900}}" />
+            <Setter Property="StrokeThickness"
+                    Value="1" />
+            <Setter Property="StrokeShape"
+                    Value="Ellipse" />
+            <Setter Property="Margin"
+                    Value="0,0,0,20" />
+            <Setter Property="Shadow">
+                <Setter.Value>
+                    <Shadow Brush="Green"
+                            Opacity="0.8"
+                            Offset="10,10" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Image"
+               x:Key="MyImageStyle">
+            <Setter Property="Aspect"
+                    Value="AspectFit" />
+            <Setter Property="VerticalOptions"
+                    Value="Center" />
+            <Setter Property="HorizontalOptions"
+                    Value="Center" />
+            <Setter Property="WidthRequest"
+                    Value="100" />
+            <Setter Property="HeightRequest"
+                    Value="100" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0"
+                             Spacing="25">
+
+            <Label Text="Image inside a border"
+                   Style="{StaticResource SubHeadline}" />
+            <Border Style="{StaticResource MyBorderStyle}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Border.GestureRecognizers>
+                <Border.Behaviors>
+                    <toolkit:TouchBehavior PressedOpacity="0.6"
+                                           PressedScale="0.8" />
+                </Border.Behaviors>
+                <Image Source="dotnet_bot.png"
+                       Style="{StaticResource MyImageStyle}" />
+            </Border>
+
+            <Label Text="Image inside a border with a shadow"
+                   Style="{StaticResource SubHeadline}" />
+            <Border Style="{StaticResource MyBorderStyleWithShadow}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                </Border.GestureRecognizers>
+                <Border.Behaviors>
+                    <toolkit:TouchBehavior PressedOpacity="0.6"
+                                           PressedScale="0.8" />
+                </Border.Behaviors>
+                <Image Source="dotnet_bot.png"
+                       Style="{StaticResource MyImageStyle}" />
+            </Border>
+
+            <Label Text="Image inside a border with a shadow without behavior"
+                   Style="{StaticResource SubHeadline}" />
+            <Border Style="{StaticResource MyBorderStyleWithShadow}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                </Border.GestureRecognizers>
+                <Image Source="dotnet_bot.png"
+                       Style="{StaticResource MyImageStyle}" />
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
